@@ -449,8 +449,6 @@ function GallerySection() {
         <div className="mt-6 text-center">
           <a
             href="https://www.instagram.com/marynails_manicurista/"
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-5 py-3 rounded-xl text-sm font-semibold active:scale-95 transition-transform"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1030,8 +1028,6 @@ function Footer() {
         <div className="flex justify-center gap-4 mb-8">
           <a
             href="https://www.instagram.com/marynails_manicurista/"
-            target="_blank"
-            rel="noopener noreferrer"
             className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center active:bg-rose-400 transition-colors"
             aria-label="Instagram"
           >
