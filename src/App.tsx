@@ -50,6 +50,17 @@ const ClockIcon = () => (
   </svg>
 );
 
+const Logo = ({ className = "h-8", variant = "dark" }: { className?: string; variant?: "dark" | "light" }) => {
+  const src = variant === "dark" ? "/logo_negro.png" : "/logo_blanco.png";
+  return (
+    <img 
+      src={src} 
+      alt="MaryNails" 
+      className={`${className} object-contain transition-opacity duration-300`} 
+    />
+  );
+};
+
 // Navigation Component - Mobile First (Simplified)
 function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -101,11 +112,10 @@ function Navigation() {
       }`}>
         <div className="px-4 h-16 flex items-center justify-between">
           <a href="#hero" className="flex items-center" onClick={handleLinkClick}>
-            <span className={`text-xl font-serif font-bold transition-colors ${
-              isMobileMenuOpen || isScrolled ? 'text-rose-400' : 'text-white'
-            }`}>
-              Mary<span className="text-rose-300">Nails</span>
-            </span>
+            <Logo 
+              className="h-10" 
+              variant={isMobileMenuOpen || isScrolled ? 'dark' : 'light'} 
+            />
           </a>
 
           {/* Mobile Menu Button */}
@@ -170,6 +180,11 @@ function HeroSection() {
       {/* Content */}
       <div className="relative z-10 w-full px-5 py-20 pt-24">
         <div className="max-w-lg mx-auto text-center">
+          {/* Logo grande en el Hero */}
+          <div className="mb-8">
+            <Logo className="h-28 sm:h-36 lg:h-44 mx-auto drop-shadow-2xl" variant="light" />
+          </div>
+
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full mb-5">
             <SparklesIcon />
             <span className="text-white/90 text-sm font-medium">7 años de trayectoria</span>
@@ -250,10 +265,10 @@ function AboutSection() {
               />
             </div>
             {/* Floating Card - Repositioned for mobile */}
-            <div className="absolute -bottom-4 left-4 right-4 lg:left-auto lg:right-0 lg:-bottom-6 bg-white rounded-xl shadow-lg p-4 lg:max-w-xs">
+            <div className="absolute -bottom-4 left-4 right-4 lg:left-auto lg:right-0 lg:-bottom-6 bg-white rounded-xl shadow-lg p-4 lg:max-w-xs z-20">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 bg-gradient-to-br from-rose-400 to-rose-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                  EC
+                <div className="w-11 h-11 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center flex-shrink-0 p-1.5">
+                  <Logo className="h-6" variant="dark" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-gray-800 text-sm">Elizabeth Caron</p>
@@ -1005,9 +1020,9 @@ function Footer() {
       {/* Main footer content */}
       <div className="px-5 py-10 max-w-lg lg:max-w-5xl mx-auto text-center">
         {/* Logo y tagline */}
-        <h3 className="text-2xl font-serif font-bold mb-2">
-          Mary<span className="text-rose-400">Nails</span>
-        </h3>
+        <div className="flex justify-center mb-3">
+          <Logo className="h-12" variant="light" />
+        </div>
         <p className="text-gray-400 text-sm mb-1">by Elizabeth Caron</p>
         <p className="text-rose-400/80 text-xs mb-6">7 años embelleciendo tus manos</p>
 
