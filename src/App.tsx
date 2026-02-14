@@ -448,7 +448,7 @@ function GallerySection() {
 
         <div className="mt-6 text-center">
           <a
-            href="https://www.instagram.com/marynails_manicurista/"
+            href="https://www.instagram.com/marynails_manicurista?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-5 py-3 rounded-xl text-sm font-semibold active:scale-95 transition-transform"
@@ -666,7 +666,7 @@ ${mensaje ? `• Mensaje adicional: ${mensaje}` : ''}
 ---
 Enviado desde la web de MaryNails`;
 
-    const mailtoLink = `mailto:gonzayobanni@gmail.com?subject=📅 Solicitud de Turno - ${nombre}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:maryaelizawach@gmail.com?subject=📅 Solicitud de Turno - ${nombre}&body=${encodeURIComponent(body)}`;
     
     window.location.href = mailtoLink;
   };
@@ -1029,7 +1029,7 @@ function Footer() {
         {/* Social icons */}
         <div className="flex justify-center gap-4 mb-8">
           <a
-            href="https://www.instagram.com/marynails_manicurista/"
+            href="https://www.instagram.com/marynails_manicurista?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center active:bg-rose-400 transition-colors"
