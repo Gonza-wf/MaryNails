@@ -50,6 +50,21 @@ const ClockIcon = () => (
   </svg>
 );
 
+// Logo Component - Usa logo-white.png y logo-black.png de la carpeta public/
+const Logo = ({ className = "h-10", variant = "dark" }: { className?: string; variant?: "dark" | "light" | "white" }) => {
+  // variant "dark" = logo negro (para fondos claros)
+  // variant "light" o "white" = logo blanco (para fondos oscuros)
+  const src = variant === "dark" ? "/logo-negro.png" : "/logo-blanco.png";
+
+  return (
+    <img 
+      src={src} 
+      alt="MaryNails" 
+      className={`${className} object-contain`} 
+    />
+  );
+};
+
 // Navigation Component - Mobile First (Simplified)
 function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
