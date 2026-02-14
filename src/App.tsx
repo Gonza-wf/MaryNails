@@ -1,5 +1,35 @@
 import { useState, useEffect } from 'react';
 
+// Instagram handler - Deep link para móviles
+const handleInstagramClick = (e: React.MouseEvent) => {
+  e.preventDefault();
+  const username = 'marynails_manicurista';
+  const webUrl = `https://www.instagram.com/${username}/`;
+  
+  // Detectar si es móvil
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    // Intentar abrir la app directamente con intent/scheme
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    
+    if (isAndroid) {
+      // Android: usar intent:// que es más confiable
+      window.location.href = `intent://www.instagram.com/${username}/#Intent;scheme=https;package=com.instagram.android;end`;
+    } else {
+      // iOS: intentar abrir con el scheme de Instagram
+      window.location.href = `instagram://user?username=${username}`;
+      // Fallback: si no se abre la app en 2 segundos, ir a la web
+      setTimeout(() => {
+        window.location.href = webUrl;
+      }, 2000);
+    }
+  } else {
+    // Desktop: abrir en nueva pestaña
+    window.open(webUrl, '_blank');
+  }
+};
+
 // Icons as components
 const SparklesIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -449,6 +479,7 @@ function GallerySection() {
         <div className="mt-6 text-center">
           <a
             href="https://www.instagram.com/marynails_manicurista/"
+            onClick={handleInstagramClick}
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-5 py-3 rounded-xl text-sm font-semibold active:scale-95 transition-transform"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1028,6 +1059,7 @@ function Footer() {
         <div className="flex justify-center gap-4 mb-8">
           <a
             href="https://www.instagram.com/marynails_manicurista/"
+            onClick={handleInstagramClick}
             className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center active:bg-rose-400 transition-colors"
             aria-label="Instagram"
           >
