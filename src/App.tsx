@@ -396,12 +396,12 @@ function ServicesSection() {
 // Gallery Section - Mobile First with Lazy Loading
 function GallerySection() {
   const images = [
-    { src: '/src/image/nails1.jpg', alt: 'Diseño elegante' },
-    { src: 'https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=400&q=70&auto=format', alt: 'Francesa clásica' },
-    { src: '/src/image/nails3.jpg', alt: 'Nail art' },
-    { src: '/src/image/nails4.jpg', alt: 'Semipermanente' },
-    { src: '/src/image/nails5.jpg', alt: 'Minimalista' },
-    { src: '/src/image/nails2.jpg', alt: 'Decoradas' },
+    { src: '/public/image/nails1.jpg', alt: 'Diseño elegante' },
+    { src: '/public/image/nails2.jpg', alt: 'Francesa clásica' },
+    { src: '/public/image/nails3.jpg', alt: 'Nail art' },
+    { src: '/public/image/nails4.jpg', alt: 'Semipermanente' },
+    { src: '/public/image/nails5.jpg', alt: 'Minimalista' },
+    { src: '/public/image/nails6.jpg', alt: 'Decoradas' },
   ];
 
   return (
