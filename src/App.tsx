@@ -287,7 +287,7 @@ function AboutSection() {
           <div className="relative">
             <div className="aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="/public/salon.jpg"
+                src="/salon.jpg"
                 alt="Elizabeth Caron - Especialista en uñas"
                 className="w-full h-full object-cover"
                 loading="lazy"
