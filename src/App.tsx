@@ -1,4 +1,3 @@
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useState, useEffect } from 'react';
 
 // Instagram handler - Deep link para móviles
@@ -1133,15 +1132,6 @@ export function App() {
       <ContactSection />
       <Footer />
       <FloatingWhatsApp />
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      {/* Todo tu contenido actual */}
-      <SpeedInsights /> 
     </div>
   );
 }
