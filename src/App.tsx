@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Instagram handler - Deep link para móviles
 const handleInstagramClick = (e: React.MouseEvent) => {
@@ -1132,6 +1133,7 @@ export function App() {
       <ContactSection />
       <Footer />
       <FloatingWhatsApp />
+      <SpeedInsights />
     </div>
   );
 }
