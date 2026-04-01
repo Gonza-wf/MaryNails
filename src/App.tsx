@@ -254,10 +254,10 @@ function HeroSection() {
 // Professional Badge Banner - Mobile Optimized
 function ProfessionalBadge() {
   const badges = [
-    { icon: '🏆', title: '7 Años', sub: 'Experiencia' },
-    { icon: '📜', title: 'Certificada', sub: 'Profesional' },
-    { icon: '✨', title: '+500', sub: 'Clientas' },
-    { icon: '🛡️', title: 'Bioseguridad', sub: '100%' },
+    { icon: '/copa-de-oro.png', title: '7 Años', sub: 'Experiencia' },
+    { icon: '/certificado.png', title: 'Certificada', sub: 'Profesional' },
+    { icon: '/estrella.png', title: '+500', sub: 'Clientas' },
+    { icon: '/escudo-de-seguridad.png', title: 'Bioseguridad', sub: '100%' },
   ];
 
   return (
@@ -265,8 +265,15 @@ function ProfessionalBadge() {
       <div className="px-4">
         <div className="grid grid-cols-4 gap-2 max-w-lg mx-auto">
           {badges.map((badge, i) => (
-            <div key={i} className="text-center">
-              <div className="text-2xl mb-1">{badge.icon}</div>
+            <div key={i} className="text-center flex flex-col items-center">
+              <div className="mb-2 h-8 flex items-center justify-center">
+                <img 
+                  src={badge.icon} 
+                  alt={badge.title} 
+                  className="w-auto h-full object-contain drop-shadow-sm" 
+                  loading="lazy"
+                />
+              </div>
               <p className="font-bold text-gray-800 text-xs sm:text-sm">{badge.title}</p>
               <p className="text-[10px] sm:text-xs text-gray-500">{badge.sub}</p>
             </div>
