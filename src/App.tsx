@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Instagram handler - Deep link para móviles
 const handleInstagramClick = (e: React.MouseEvent) => {
@@ -162,32 +163,46 @@ function Navigation() {
       </header>
 
       {/* Mobile Menu - Full screen overlay */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white pt-16">
-          <div className="flex flex-col p-6 h-full overflow-y-auto">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-white pt-16"
+          >
+            <div className="flex flex-col p-6 h-full overflow-y-auto">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 + 0.1 }}
+                  key={link.name}
+                  href={link.href}
+                  onClick={handleLinkClick}
+                  className="text-gray-800 hover:text-rose-400 font-medium py-4 text-lg border-b border-gray-100 active:bg-rose-50 -mx-6 px-6"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+              <motion.a
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: navLinks.length * 0.05 + 0.2 }}
+                href="https://wa.me/5492615724000?text=Hola%20Elizabeth!%20Vi%20tu%20página%20de%20MaryNails%20y%20quiero%20consultar%20por%20un%20turno%20para..."
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={handleLinkClick}
-                className="text-gray-800 hover:text-rose-400 font-medium py-4 text-lg border-b border-gray-100 active:bg-rose-50 -mx-6 px-6"
+                className="bg-rose-400 hover:bg-rose-500 text-white px-6 py-4 rounded-2xl text-center font-semibold text-lg mt-6 flex items-center justify-center gap-3 active:scale-95 transition-transform"
               >
-                {link.name}
-              </a>
-            ))}
-            <a
-              href="https://wa.me/5492615724000?text=Hola%20Elizabeth!%20Vi%20tu%20página%20de%20MaryNails%20y%20quiero%20consultar%20por%20un%20turno%20para..."
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleLinkClick}
-              className="bg-rose-400 hover:bg-rose-500 text-white px-6 py-4 rounded-2xl text-center font-semibold text-lg mt-6 flex items-center justify-center gap-3 active:scale-95 transition-transform"
-            >
-              <WhatsAppIcon className="w-6 h-6" />
-              Reservar Turno
-            </a>
-          </div>
-        </div>
-      )}
+                <WhatsAppIcon className="w-6 h-6" />
+                Reservar Turno
+              </motion.a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
@@ -197,7 +212,12 @@ function HeroSection() {
   return (
     <section id="hero" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
       {/* Background Image - Optimized for performance */}
-      <div className="absolute inset-0">
+      <motion.div 
+        initial={{ scale: 1.05, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute inset-0"
+      >
         <img
           src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=70&auto=format"
           alt="Manicura profesional"
@@ -205,46 +225,71 @@ function HeroSection() {
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-      </div>
+      </motion.div>
 
       {/* Content */}
       <div className="relative z-10 w-full px-5 py-20 pt-24">
         <div className="max-w-lg mx-auto text-center">
           {/* Logo grande en el Hero */}
-          <div className="mb-8">
+          <motion.div 
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
+          >
             <Logo className="h-28 sm:h-36 lg:h-44 mx-auto drop-shadow-2xl" variant="light" />
-          </div>
+          </motion.div>
 
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full mb-5">
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full mb-5"
+          >
             <SparklesIcon />
             <span className="text-white/90 text-sm font-medium">7 años de trayectoria</span>
-          </div>
+          </motion.div>
           
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight mb-4">
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight mb-4"
+          >
             El arte de cuidar tus manos
-          </h1>
+          </motion.h1>
           
-          <p className="text-base sm:text-lg text-white/85 mb-8 leading-relaxed px-2">
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-base sm:text-lg text-white/85 mb-8 leading-relaxed px-2"
+          >
             Experiencia, dedicación y belleza profesional en cada detalle. De la mano de <strong className="text-rose-300">Elizabeth Caron</strong>.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col gap-3 max-w-xs mx-auto">
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="flex flex-col gap-3 max-w-xs mx-auto"
+          >
             <a
               href="https://wa.me/5492615724000?text=Hola%20Elizabeth!%20Vi%20tu%20página%20de%20MaryNails%20y%20quiero%20consultar%20por%20un%20turno%20para..."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-2xl text-base font-semibold transition-all active:scale-95 shadow-lg shadow-green-500/30"
+              className="flex items-center justify-center gap-3 bg-green-500 text-white px-6 py-4 rounded-2xl text-base font-semibold transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-green-500/30"
             >
               <WhatsAppIcon className="w-6 h-6" />
               Reservar Turno
             </a>
             <a
               href="#services"
-              className="flex items-center justify-center gap-2 bg-white/15 backdrop-blur-sm hover:bg-white/25 text-white px-6 py-4 rounded-2xl text-base font-medium transition-all border border-white/30 active:scale-95"
+              className="flex items-center justify-center gap-2 bg-white/15 backdrop-blur-sm hover:bg-white/25 text-white px-6 py-4 rounded-2xl text-base font-medium transition-all border border-white/30 hover:scale-[1.02] active:scale-95"
             >
               Ver Servicios
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -265,7 +310,14 @@ function ProfessionalBadge() {
       <div className="px-4">
         <div className="grid grid-cols-4 gap-2 max-w-lg mx-auto">
           {badges.map((badge, i) => (
-            <div key={i} className="text-center flex flex-col items-center">
+            <motion.div 
+              key={i} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="text-center flex flex-col items-center"
+            >
               <div className="mb-2 h-8 flex items-center justify-center">
                 <img 
                   src={badge.icon} 
@@ -276,7 +328,7 @@ function ProfessionalBadge() {
               </div>
               <p className="font-bold text-gray-800 text-xs sm:text-sm">{badge.title}</p>
               <p className="text-[10px] sm:text-xs text-gray-500">{badge.sub}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -291,7 +343,13 @@ function AboutSection() {
       <div className="px-5 max-w-lg lg:max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Image - Mobile optimized */}
-          <div className="relative">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
             <div className="aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
               <img
                 src="/salon.jpg"
@@ -313,10 +371,16 @@ function AboutSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Content */}
-          <div className="mt-8 lg:mt-0">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-8 lg:mt-0"
+          >
             <span className="inline-block text-rose-400 font-medium text-sm mb-2">Sobre Mí</span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-gray-800 mb-4">
               7 años transformando manos y pies
@@ -362,7 +426,7 @@ function AboutSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -400,9 +464,14 @@ function ServicesSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white rounded-2xl p-5 lg:p-6 shadow-md shadow-rose-100/50 border border-rose-50 hover:shadow-lg transition-shadow"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-2xl p-5 lg:p-6 shadow-md shadow-rose-100/50 border border-rose-50 hover:shadow-lg transition-all duration-300"
             >
               <div className="text-3xl lg:text-4xl mb-3">{service.icon}</div>
               <h3 className="text-base lg:text-lg font-semibold text-gray-800 mb-2">{service.title}</h3>
@@ -418,7 +487,7 @@ function ServicesSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -471,7 +540,15 @@ function GallerySection() {
 
         <div className="grid grid-cols-3 gap-2 lg:gap-4">
           {images.map((image, index) => (
-            <div key={index} className="relative aspect-square overflow-hidden rounded-xl bg-rose-50">
+            <motion.div 
+              key={index} 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              className="relative aspect-square overflow-hidden rounded-xl bg-rose-50"
+            >
               <img
                 src={image.src}
                 alt={image.alt}
@@ -479,7 +556,7 @@ function GallerySection() {
                 decoding="async"
                 className="w-full h-full object-cover transition-opacity duration-300"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -535,8 +612,12 @@ function TestimonialsSection() {
 
         <div className="space-y-4 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0">
           {testimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
               className="bg-white rounded-2xl p-5 shadow-md border border-rose-50"
             >
               <div className="flex gap-0.5 mb-3">
@@ -558,7 +639,7 @@ function TestimonialsSection() {
                   <p className="text-xs text-rose-400">Desde {testimonial.since}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -620,8 +701,12 @@ function TipsSection() {
         {/* Tips como tarjetas */}
         <div className="space-y-3">
           {tips.map((tip, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               className={`rounded-xl p-4 flex gap-4 items-start transition-all ${
                 tip.highlight 
                   ? 'bg-gradient-to-r from-rose-100 to-rose-50 border-2 border-rose-200 shadow-md' 
@@ -646,7 +731,7 @@ function TipsSection() {
                 </div>
                 <p className="text-gray-500 text-xs leading-relaxed">{tip.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -710,7 +795,13 @@ Enviado desde la web de MaryNails`;
   return (
     <section id="turnos" className="py-12 lg:py-24 bg-gradient-to-b from-white to-rose-50/50">
       <div className="px-5 max-w-lg lg:max-w-2xl mx-auto">
-        <div className="text-center mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-6"
+        >
           <span className="inline-block text-rose-400 font-medium text-sm mb-2">Reservas</span>
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-gray-800 mb-2">
             Solicitar Turno
@@ -718,9 +809,15 @@ Enviado desde la web de MaryNails`;
           <p className="text-gray-600 text-sm">
             Completá el formulario y te confirmo por email o WhatsApp
           </p>
-        </div>
+        </motion.div>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-rose-50">
+        <motion.form
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-rose-50"
+        >
           <div className="space-y-5">
             {/* Nombre */}
             <div>
@@ -840,7 +937,7 @@ Enviado desde la web de MaryNails`;
           <p className="text-center text-gray-400 text-xs mt-4">
             Al enviar, se abrirá tu app de email con los datos completados
           </p>
-        </form>
+        </motion.form>
 
         {/* Alternativa WhatsApp */}
         <div className="mt-6 text-center">
@@ -908,8 +1005,12 @@ function FAQSection() {
 
         <div className="space-y-3">
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.4, delay: index * 0.07 }}
               className={`bg-rose-50/50 rounded-xl overflow-hidden transition-all ${
                 openIndex === index ? 'ring-2 ring-rose-200 bg-white' : ''
               }`}
@@ -940,7 +1041,7 @@ function FAQSection() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-8">{faq.answer}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -1110,15 +1211,22 @@ function Footer() {
 // Floating WhatsApp Button - Mobile optimized
 function FloatingWhatsApp() {
   return (
-    <a
+    <motion.a
       href="https://wa.me/5492615724000?text=Hola%20Elizabeth!%20Vi%20tu%20página%20de%20MaryNails%20y%20quiero%20consultar%20por%20un%20turno%20para..."
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-50 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl shadow-green-500/30 active:scale-90 transition-transform"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 1.5, type: 'spring', stiffness: 200 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="fixed bottom-5 right-5 z-50 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl shadow-green-500/30"
       aria-label="Contactar por WhatsApp"
     >
       <WhatsAppIcon className="w-7 h-7" />
-    </a>
+      {/* Ping ring */}
+      <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-30" />
+    </motion.a>
   );
 }
 
